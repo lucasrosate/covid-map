@@ -6,6 +6,7 @@ import environ
 env = environ.Env()
 environ.Env.read_env()
 
+NAME = env('NAME')
 HOST = env('HOST')
 USER = env('USER')
 PASSWORD = env('PASSWORD')
@@ -21,8 +22,8 @@ def insert_covid_data_into_db():
         )
 
         cursor = mydb.cursor()
-        cursor.execute("CREATE SCHEMA IF NOT EXISTS `covid_data`")
-        cursor.execute('USE `covid_data`')
+        cursor.execute("CREATE SCHEMA IF NOT EXISTS " + NAME)
+        cursor.execute('USE ' + NAME)
 
         # cursor.execute("""
         #     ALTER TABLE IF NOT EXISTS covidmap_coviddata (

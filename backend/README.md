@@ -1,6 +1,3 @@
----
-data_route = Route to get covid world data
----
 <!--# 
 data_route=YOUR_SERVER_URL/covidmap/get_todays_data
  $-->
@@ -11,7 +8,7 @@ The backend was made in django-rest-framework. The main task of this it's to fet
 The server is configured to use MySQL server, you can change by configuring in ```settings.py```, but things might not work correctly, since the crawler queries was made for this db in specific.
 
 ### Localrun
-It's highly recommend to install a virtual enviroment before anything. You can check this tutorial [here](https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/26/python-virtual-env/).
+It's highly recommended to install a virtual enviroment before anything. You can check this tutorial [here](https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/26/python-virtual-env/).
 
 
 Steps:

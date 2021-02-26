@@ -54,7 +54,7 @@ class CovidData(models.Model):
                                                null=0
                                             )
     
-    population_density = models.BigIntegerField(verbose_name="Total Fully Vaccinated",
+    population_density = models.BigIntegerField(verbose_name="Population Density",
                                                 null=0
                                              )
     

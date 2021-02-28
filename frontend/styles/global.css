@@ -40,11 +40,16 @@ body {
     align-items: center;
   }
 
-  .loading-window {
+  .loading-window,
+  .failed-data {
       width: 100%;
       height: 100%;
       font-size: 2.0rem;
       display: flex;
       align-items: center;
       justify-content: center;
+  }
+
+  .failed-data {
+    color: red;
   }

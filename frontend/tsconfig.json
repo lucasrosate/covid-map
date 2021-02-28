@@ -20,7 +20,14 @@
     "noEmit": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+
+    "baseUrl": ".",
+
+    "paths": {
+      "@/components/*": ["./components/*"],
+      "@/styles/*": ["./styles/*"]
+    }
   },
   "include": [
     "next-env.d.ts",
@@ -29,5 +36,5 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
 }

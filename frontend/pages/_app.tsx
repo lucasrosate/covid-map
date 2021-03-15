@@ -2,18 +2,27 @@ import useSWR from 'swr';
 import { AppProps } from 'next/app';
 import ReactTooltip from "react-tooltip";
 import { useState } from 'react';
-import WorldMap from '@/components/WorldMap/WorldMap';
+import WorldMap from '@/components/WorldMap';
 import Image from 'next/image';
 import Head from 'next/head';
 import '@/styles/global.css'
-
+import IWorldMapStats from '@/interfaces/Components/WorldMap/IWorldMapStats.interface'
 
 
 function App({ Component, pageProps }: AppProps) {
 
     var [content, setContent] = useState("");
-
-
+    var [worldStats, setWorldStats] = useState<IWorldMapStats>({
+        newCases: 0,
+        newDeaths: 0,
+        newTests: 0,
+        newVaccinations: 0,
+        totalCases: 0,
+        totalDeaths: 0,
+        peopleVaccinated: 0,
+        populationDensity: 0,
+    });
+    
     return (
         <div>
             <Head>
@@ -37,8 +46,11 @@ function App({ Component, pageProps }: AppProps) {
                     </h1>
                 </nav>
 
-                <WorldMap setTooltipContent={setContent} />
-                    <ReactTooltip>{content}</ReactTooltip>
+                <WorldMap
+                setTooltipContent={setContent}           
+                setWorldStats={setWorldStats}/>
+                
+                <ReactTooltip>{content}</ReactTooltip>
             </body>
         </div>
     )

@@ -2,7 +2,7 @@
 
 The backend was made in django-rest-framework. The main task of this it's to fetch all processed data from DB and send it to front-end.
 
-The server is configured to use MySQL server as db, you can change by setting the settings in ```settings.py```, but things might not work as expected, since the crawler queries was made for this db in specific.
+The server is configured to use MySQL server as db, you can change by setting the settings in ```settings.py```, but things might not work as, since the crawler queries was made for this db in specific.
 
 ### Localrun
 It's highly recommended to install a virtual enviroment before anything. You can check this tutorial [here](https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/26/python-virtual-env/).

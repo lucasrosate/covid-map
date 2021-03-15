@@ -25,30 +25,6 @@ def insert_covid_data_into_db():
         cursor.execute("CREATE SCHEMA IF NOT EXISTS " + NAME)
         cursor.execute('USE ' + NAME)
 
-        # cursor.execute("""
-        #     ALTER TABLE IF NOT EXISTS covidmap_coviddata (
-        #         id INT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-        #         continent_id INT(3) UNSIGNED NOT NULL,
-        #         location_id INT(8) UNSIGNED NOT NULL,
-        #         date_registered DATE NOT NULL,
-        #         new_cases_smoothed INT(20) NOT NULL,
-        #         new_deaths_smoothed INT(20) NOT NULL,
-        #         new_tests_smoothed INT(20) NOT NULL,
-        #         new_vaccinations_smoothed INT(10) UNSIGNED NOT NULL,
-        #         total_cases INT(32) UNSIGNED NOT NULL,
-        #         total_deaths INT(32) UNSIGNED NOT NULL,
-        #         total_tests INT(32) UNSIGNED NOT NULL,
-        #         people_vaccinated BIGINT(36) UNSIGNED NOT NULL,
-        #         population_density INT(10) UNSIGNED NOT NULL,
-        #         population BIGINT(36) UNSIGNED NOT NULL,
-        #         life_expectancy INT(10) UNSIGNED NOT NULL,
-        #         human_development_index FLOAT(4) UNSIGNED NOT NULL,
-        #         PRIMARY KEY(id),
-        #         FOREIGN KEY(continent_id) REFERENCES covidmap_continent(id),
-        #         FOREIGN KEY(location_id) REFERENCES covidmap_location(id)
-        #     );
-        # """)
-
         query = """
             INSERT INTO covidmap_coviddata (
                 continent_id,

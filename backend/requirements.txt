@@ -1,9 +1,12 @@
+APScheduler==3.7.0
 asgiref==3.3.1
 astroid==2.5
 certifi==2020.12.5
 chardet==4.0.0
 colorama==0.4.4
 Django==3.1.7
+django-apscheduler==0.5.2
+django-cors-headers==3.7.0
 django-environ==0.4.5
 django-filter==2.4.0
 djangorestframework==3.12.2
@@ -26,5 +29,6 @@ requests==2.25.1
 six==1.15.0
 sqlparse==0.4.1
 toml==0.10.2
+tzlocal==2.1
 urllib3==1.26.3
 wrapt==1.12.1

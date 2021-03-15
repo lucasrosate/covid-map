@@ -24,6 +24,9 @@ ENV/
 env.bak/
 venv.bak/
 pythonenv*
+covidmap/migrations/
+covidmap/data_management/csv/
+.eggs
 
-
+report.log
 .vscode

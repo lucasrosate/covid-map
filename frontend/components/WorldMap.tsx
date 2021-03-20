@@ -8,22 +8,21 @@ import {
 } from "react-simple-maps";
 
 import rounded from "@/utils/rounded";
-
+import getRandomColor from '@/utils/getRandomColor';
 import IWorldMapStats from '@/interfaces/Components/WorldMap/IWorldMapStats.interface';
 import CovidDataArray from '@/interfaces/Components/WorldMap/CovidDataArray.interface';
 
 
-const geoUrl =
-    "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
+const HEIGHT = 750;
+const mapBasedColorPallette = "#296fca"
+const geoUrl = "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
-const WorldMap: React.FC<{ setTooltipContent: React.SetStateAction<any>, setWorldStats: React.SetStateAction<any> }>
-    = ({ setTooltipContent, setWorldStats }) => {
+const randomColors = getRandomColor(mapBasedColorPallette, 193, 0.6);
+const WorldMap: React.FC<{ data: CovidDataArray, error: string, setTooltipContent: React.SetStateAction<any>, setWorldStats: React.SetStateAction<any>, width?: number }>
+    = ({ data, error, setTooltipContent, setWorldStats, width }) => {
 
-        const fetcher = (url: string) => fetch(url)
-            .then(res => res.json());
-
-        const { data, error } = useSWR<CovidDataArray>('http://127.0.0.1:8000/covidmap/get-todays-data/?format=json', fetcher);
+        const WIDTH = width? width: 1300;
 
         return (
             <>
@@ -31,35 +30,39 @@ const WorldMap: React.FC<{ setTooltipContent: React.SetStateAction<any>, setWorl
 
                 {!data && !error && <div className='loading-window'>Loading...</div>}
 
-                {
-                    <Container>
+                {data && !error &&
+                    <Container width={WIDTH} height={HEIGHT}>
+
                         <div className="worldmap-container">
                             <ComposableMap data-tip=""
-                            projectionConfig={{ scale: 0 }}
-                            height={600}
-                            width={900}
+                                projectionConfig={{ scale: 250 }}
+            
+                                width={WIDTH}
+                                height={HEIGHT}
                             >
                                 <Geographies geography={geoUrl}>
                                     {({ geographies }) =>
-                                        geographies.map((geo,index) => (
+                                        geographies.map((geo, countryIndex) => (
                                             <Geography
                                                 key={geo.rsmKey}
                                                 geography={geo}
                                                 onMouseEnter={() => {
                                                     const { NAME, NAME_LONG, POP_EST } = geo.properties;
+                                                    
 
-                                                    let newCases: number;
-                                                    let newDeaths: number;
-                                                    let newTests: number;
-                                                    let newVaccinations: number;
-                                                    let totalCases: number;
-                                                    let totalDeaths: number;
-                                                    let peopleVaccinated: number;
-                                                    let populationDensity: number;
-
-                                                    data.data_cases_countries.forEach((country) => {
+                                                    data.data_cases_countries.forEach((country, index) => {
                                                         if (country.location_name === NAME || country.location_name == NAME_LONG) {
+                                                            setTooltipContent(`${NAME} — ${rounded(POP_EST)}`);
+                                                            return;
+                                                        }
+                                                    });
 
+                                                }}
+                                                onClick={() => {
+                                                    const { NAME, NAME_LONG, POP_EST } = geo.properties;
+
+                                                    data.data_cases_countries.forEach((country, index) => {
+                                                        if (country.location_name === NAME || country.location_name == NAME_LONG) {
                                                             let newWorldStats: IWorldMapStats = {
                                                                 newCases: country.new_cases_smoothed,
                                                                 newDeaths: country.new_deaths_smoothed,
@@ -68,31 +71,31 @@ const WorldMap: React.FC<{ setTooltipContent: React.SetStateAction<any>, setWorl
                                                                 totalCases: country.total_cases,
                                                                 totalDeaths: country.total_deaths,
                                                                 peopleVaccinated: country.people_vaccinated,
-                                                                populationDensity: country.population_density
+                                                                populationDensity: country.population_density,
+                                                                population: POP_EST,
+                                                                country: country.location_name
                                                             }
 
                                                             setWorldStats(newWorldStats);
-                                                            setTooltipContent(`${NAME} — ${rounded(POP_EST)}`);
+                    
                                                             return;
                                                         }
                                                     });
-
-
                                                 }}
                                                 onMouseLeave={() => {
                                                     setTooltipContent("");
                                                 }}
                                                 style={{
                                                     default: {
-                                                        fill: "red",
+                                                        fill: randomColors[countryIndex],
                                                         outline: "none"
                                                     },
                                                     hover: {
-                                                        fill: "#F53",
+                                                        fill: "#3c7bce",
                                                         outline: "none"
                                                     },
                                                     pressed: {
-                                                        fill: "#E42",
+                                                        fill: "#89b2e7",
                                                         outline: "none"
                                                     }
                                                 }}
@@ -102,34 +105,29 @@ const WorldMap: React.FC<{ setTooltipContent: React.SetStateAction<any>, setWorl
                                 </Geographies>
                             </ComposableMap>
                         </div>
-
-
-                        {/* {JSON.stringify(data)} */}
+                    
                     </Container>
                 }
-
+                
             </>
         );
     };
 
-const Container = styled.div`
+const Container = styled.div<{width: number, height: number}>`
 
-width: 80%;
-height: 600px;
+width: ${props=>props.width}px;
+height: ${props=>props.height}px;
 display: flex;
 overflow: hidden;
 
-.worldmap-container {
-    margin-left: auto;
-    margin-right: auto;
 
-    svg {
+margin-right: auto;
+
+.rsm-svg {
+        align-items: center;
         height: 100%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
 
+}
 `
 
 export default memo(WorldMap);

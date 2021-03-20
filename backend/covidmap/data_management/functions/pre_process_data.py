@@ -3,7 +3,7 @@ import pandas as pd
 from covidmap.data_management.functions.download_covid_csv import download_covid_csv
 
 
-def pre_process_data(most_recent=True):
+def pre_process_data(most_recent=True) -> None:
     """
     Select only important informations to show .
     

@@ -1,55 +1,87 @@
 :root {
---primary-color: #7D7F7B;
---secondary-color: #1F6357;
---primary-color-2: #968A84;
-
---text-color: rgb(21, 21, 21);
---text-color-2: rgb(249, 249, 249);
+  --primary-color: #0956bb;
+  --secondary-color: #7D7F7B;
+  --secondary-color-2: #eeeceb;
+  --text-color: rgb(21, 21, 21);
+  --text-color-2: rgb(249, 249, 249);
 }
 
 body {
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgb(255, 255, 255);
-    color: var(--text-color);
-    font-family: 'Barlow', sans-serif;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(255, 255, 255);
+  color: var(--text-color);
+  font-family: 'Barlow', sans-serif;
 }
 
 * {
-    box-sizing: border-box;
-  }
+  box-sizing: border-box;
+}
 
-  nav {
-      background-color: var(--secondary-color);
-      height: 60px;
-      display: flex;
-      box-shadow: 0px 5px 4px rgb(0,0,0, .3);
-      align-items: center;
-  }
+.navigation-bar {
+  background-color: var(--primary-color);
+  height: 35px;
+  box-shadow: 2px 2px 3px rgb(0, 0, 0, .4);
+  -webkit-box-shadow: 2px 2px 3px rgb(0, 0, 0, .4);
 
-  nav h1 {
-      color: var(--text-color-2);
-      font-size: 2.0rem;
-      font-weight: 500;
-      padding-left: 20px;
-  }
+  display: flex;
+  align-items: center;
+}
 
-  .nav-image {
-    margin-left: 20px;
-    align-items: center;
-  }
+.navigation-bar h1 {
+  color: var(--text-color-2);
+  font-size: 1.6rem;
+  font-weight: 500;
+  padding-left: 20px;
+}
 
-  .loading-window,
-  .failed-data {
-      width: 100%;
-      height: 100%;
-      font-size: 2.0rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  }
+.nav-image {
+  margin-left: 20px;
+  align-items: center;
+}
 
-  .failed-data {
-    color: red;
-  }
+.loading-window, .failed-data {
+  width: 100%;
+  height: 100%;
+  font-size: 2.0rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.failed-data {
+  color: red;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+}
+
+footer {
+  width: 100vw;
+  height: 35px;
+  background-color: var(--secondary-color-2);
+  
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+
+
+
+
+}

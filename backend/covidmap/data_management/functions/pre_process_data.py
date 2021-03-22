@@ -15,11 +15,15 @@ def pre_process_data(most_recent=True) -> None:
     
     if most_recent:
         file_path = download_covid_csv()
-        
+        if file_path is None:
+            raise IOError
     else:
-        path = os.path.join(os.path.dirname(__file__), '..') 
-        file_path = os.path.join(path, 'csv/owid-covid-data.csv')
-  
+        try:
+            path = os.path.join(os.path.dirname(__file__), '..') 
+            file_path = os.path.join(path, 'csv', 'owid-covid-data.csv')
+        except IOError:
+            raise IOError
+        
     # save_path = os.path.join(path, 'csv/processed_data.csv')
     
     df = pd.read_csv(file_path)

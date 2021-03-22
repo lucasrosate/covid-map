@@ -54,7 +54,7 @@ class CovidData(models.Model):
                                                null=0
                                             )
     
-    population_density = models.BigIntegerField(verbose_name="Population Density",
+    population_density = models.FloatField(verbose_name="Population Density",
                                                 null=0
                                              )
     
@@ -78,6 +78,9 @@ class CovidData(models.Model):
     def continent_name(self):
         return self.continent.continent
     
+
+    
+     
     
 
     

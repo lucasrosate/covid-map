@@ -1,4 +1,5 @@
 import mysql.connector
+
 from covidmap.data_management.functions.create_location_relations import create_location_relations
 
 import environ
@@ -24,14 +25,6 @@ def insert_unique_locations_into_db():
         cursor = mydb.cursor()
         cursor.execute("CREATE SCHEMA IF NOT EXISTS " + NAME)
         cursor.execute('USE ' + NAME)
-        
-        # cursor.execute("""
-        #     CREATE TABLE IF NOT EXISTS `covidmap_location` (
-        #         id INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
-        #         location VARCHAR(32) NOT NULL,
-        #         PRIMARY KEY(id)
-        #     );
-        # """)
         
         query = """
             INSERT INTO covidmap_location (location)

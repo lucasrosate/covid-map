@@ -16,4 +16,4 @@ class CovidGeneralDataSerializer(serializers.Serializer):
     population_density = serializers.IntegerField(read_only=True) 
     population = serializers.IntegerField(read_only=True) 
     life_expectancy = serializers.IntegerField(read_only=True) 
-    human_development_index = serializers.IntegerField(read_only=True) 
+    human_development_index = serializers.FloatField(read_only=True) 

@@ -57,6 +57,16 @@ const TableCovidStats: React.FC<{ worldStats: ICovidData, data:CovidDataArray,  
                         <td>Population Density:</td>
                         <td>{worldStats.populationDensity} hab/km²</td>
                     </tr>
+
+                    <tr>
+                        <td>HDI:</td>
+                        <td>{worldStats.humanDevelopmentIndex}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Last time registered:</td>
+                        <td>{worldStats.dateRegistered}</td>
+                    </tr>
                     
 
 

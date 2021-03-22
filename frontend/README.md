@@ -5,13 +5,10 @@ Things to be added:
 - A chart to display historical data through since the beggining.
 - Responsive layout.
 
-
-
 ### Technologies
 - Next.js
 - styled-components
 - react-simple-maps
-
 
 ### Localrun
 1. Copy this address.

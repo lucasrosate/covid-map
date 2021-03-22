@@ -23,6 +23,7 @@ function App({ Component, pageProps }: AppProps) {
 
     var [content, setContent] = useState("");
     var [worldStats, setWorldStats] = useState<IWorldMapStats>({
+        dateRegistered: "01/01/1900",
         newCases: 0,
         newDeaths: 0,
         newTests: 0,
@@ -32,7 +33,9 @@ function App({ Component, pageProps }: AppProps) {
         peopleVaccinated: 0,
         populationDensity: 0,
         population: 0,
+        humanDevelopmentIndex: 0,
         country: ""
+        
     });
 
     const WIDTH = 1300;

@@ -5,11 +5,9 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from datetime import datetime, timedelta
 
-
-from covidmap.models import CovidData
 from covidmap.serializers import CovidGeneralDataSerializer
+from covidmap.utils import get_most_recent_data, timer
 
 
 class GetTodayCasesView(APIView):
@@ -19,16 +17,17 @@ class GetTodayCasesView(APIView):
     * Requires date today
     * Anyone can access this view
     """
-    
+    @timer
     def get(self, request, format=None):
         """
         Return covid data base on the date today
         """
-        print(datetime.now().strftime("%Y-%m-%d"))
         
-        covid_data_today = CovidData.objects.filter(
-            date_registered=(datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
-            )
+        covid_data_today = get_most_recent_data()
+
+        # covid_data_today = CovidData.objects.filter(
+        #     date_registered=(datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+        #     )
         
         if not covid_data_today:
             return Response(data={}, status=status.HTTP_204_NO_CONTENT)

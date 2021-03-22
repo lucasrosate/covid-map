@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'django_apscheduler'
+    'django_apscheduler',
+    'memoize'
 ]
 
 REST_FRAMEWORK = {

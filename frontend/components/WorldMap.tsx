@@ -64,6 +64,7 @@ const WorldMap: React.FC<{ data: CovidDataArray, error: string, setTooltipConten
                                                     data.data_cases_countries.forEach((country, index) => {
                                                         if (country.location_name === NAME || country.location_name == NAME_LONG) {
                                                             let newWorldStats: IWorldMapStats = {
+                                                                dateRegistered: country.date_registered,
                                                                 newCases: country.new_cases_smoothed,
                                                                 newDeaths: country.new_deaths_smoothed,
                                                                 newTests: country.new_tests_smoothed,
@@ -72,6 +73,7 @@ const WorldMap: React.FC<{ data: CovidDataArray, error: string, setTooltipConten
                                                                 totalDeaths: country.total_deaths,
                                                                 peopleVaccinated: country.people_vaccinated,
                                                                 populationDensity: country.population_density,
+                                                                humanDevelopmentIndex: country.human_development_index,
                                                                 population: POP_EST,
                                                                 country: country.location_name
                                                             }

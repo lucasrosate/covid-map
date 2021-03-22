@@ -1,4 +1,5 @@
 export default interface IWorldMapStats {
+    dateRegistered: string,
     newCases: number,
     population: number,
     newDeaths: number,
@@ -8,5 +9,6 @@ export default interface IWorldMapStats {
     totalDeaths:number,
     peopleVaccinated: number,
     populationDensity: number,
+    humanDevelopmentIndex: number,
     country: string
 }

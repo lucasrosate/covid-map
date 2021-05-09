@@ -1,10 +1,8 @@
-from memoize import memoize
 import time
 from datetime import datetime
 from covidmap.models import CovidData
 
 
-@memoize(timeout=1800)
 def get_most_recent_data():
     print("[{}] Data requested.".format(datetime.now().strftime("%d-%m-%Y")))
     return CovidData.objects.raw("SELECT * FROM covid_data.covidmap_most_recent_cases;")
